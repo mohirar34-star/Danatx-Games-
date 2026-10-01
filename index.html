@@ -1,222 +1,303 @@
 <!DOCTYPE html>
 <html lang="tg">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Danatx Games 🎮</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Danatx Games</title>
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+body{
+  background:#090909;
+  color:white;
+  padding-bottom:95px;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b0f19;
-      color: white;
-      padding: 20px;
-    }
+.top{
+  margin:18px 16px 12px;
+  padding:12px 14px;
+  border:1px solid #343434;
+  border-radius:28px;
+  background:linear-gradient(135deg,#211b12,#11100e);
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
 
-    .container {
-      max-width: 500px;
-      margin: auto;
-    }
+.logo{
+  width:52px;
+  height:52px;
+  border-radius:16px;
+  background:#171717;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  border:1px solid #555;
+}
 
-    h1 {
-      text-align: center;
-      margin-bottom: 8px;
-    }
+.brand{
+  flex:1;
+  font-size:18px;
+  font-weight:700;
+}
 
-    .subtitle {
-      text-align: center;
-      color: #9ca3af;
-      margin-bottom: 25px;
-    }
+.brand span{
+  color:#ff9d00;
+}
 
-    .games {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
+.balance{
+  border:1px solid #a96b00;
+  background:#251b0b;
+  color:#ffad19;
+  padding:13px 15px;
+  border-radius:20px;
+  font-weight:bold;
+}
 
-    button {
-      border: none;
-      border-radius: 14px;
-      padding: 15px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.hero{
+  margin:16px;
+  padding:28px 22px;
+  border-radius:30px;
+  background:linear-gradient(145deg,#1b1b1d,#101011);
+  border:1px solid #353535;
+}
 
-    .game {
-      background: #171d2b;
-      color: white;
-    }
+.hero h1{
+  font-size:34px;
+  margin-bottom:12px;
+}
 
-    .game:hover {
-      background: #222b3e;
-    }
+.hero h1 span{
+  color:#ff9d00;
+}
 
-    .section {
-      margin-top: 25px;
-      background: #121826;
-      padding: 18px;
-      border-radius: 16px;
-    }
+.hero p{
+  color:#999;
+  line-height:1.5;
+}
 
-    select,
-    input {
-      width: 100%;
-      padding: 13px;
-      margin-top: 10px;
-      border-radius: 10px;
-      border: 1px solid #30394d;
-      background: #0b0f19;
-      color: white;
-      font-size: 15px;
-    }
+.games{
+  padding:0 16px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
 
-    .buy {
-      width: 100%;
-      margin-top: 15px;
-      background: #2ea6ff;
-      color: white;
-    }
+.game{
+  min-height:190px;
+  padding:14px;
+  border-radius:25px;
+  background:linear-gradient(145deg,#19191b,#0f0f10);
+  border:1px solid #303033;
+  cursor:pointer;
+  transition:.2s;
+}
 
-    .telegram {
-      width: 100%;
-      margin-top: 15px;
-      background: #229ed9;
-      color: white;
-    }
+.game:active{
+  transform:scale(.96);
+}
 
-    #status {
-      text-align: center;
-      margin-top: 15px;
-      color: #9ca3af;
-    }
-  </style>
+.game img{
+  width:100%;
+  height:115px;
+  object-fit:cover;
+  border-radius:19px;
+  background:#222;
+}
+
+.game h3{
+  margin-top:12px;
+  font-size:16px;
+}
+
+.game p{
+  color:#888;
+  margin-top:5px;
+  font-size:13px;
+}
+
+.bottom{
+  position:fixed;
+  left:14px;
+  right:14px;
+  bottom:12px;
+  height:78px;
+  border-radius:30px;
+  background:rgba(25,25,27,.96);
+  border:1px solid #404044;
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  z-index:10;
+  backdrop-filter:blur(15px);
+}
+
+.nav{
+  text-align:center;
+  color:#777;
+  font-size:11px;
+}
+
+.nav .icon{
+  font-size:25px;
+  margin-bottom:5px;
+}
+
+.nav.active{
+  color:#ff9d00;
+}
+
+.nav.active .icon{
+  color:#ff9d00;
+}
+
+@media(max-width:380px){
+  .game{
+    min-height:175px;
+  }
+  .game img{
+    height:100px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="top">
+  <div class="logo">🎮</div>
 
-  <h1>🎮 Danatx Games</h1>
-  <div class="subtitle">Game Top Up</div>
-
-  <div class="games">
-    <button class="game" onclick="selectGame('Free Fire')">🔥 Free Fire</button>
-    <button class="game" onclick="selectGame('PUBG Mobile')">🔫 PUBG Mobile</button>
-    <button class="game" onclick="selectGame('Brawl Stars')">⭐ Brawl Stars</button>
-    <button class="game" onclick="selectGame('Standoff 2')">🎯 Standoff 2</button>
-    <button class="game" onclick="selectGame('Minecraft')">⛏️ Minecraft</button>
-    <button class="game" onclick="openTelegram()">📱 Telegram</button>
+  <div class="brand">
+    Danatx <span>Games</span>
   </div>
 
-  <div class="section">
+  <div class="balance">
+    💳 0.00 TJS
+  </div>
+</div>
 
-    <h3 id="gameName">🔥 Free Fire</h3>
+<div class="hero">
+  <h1>Донат <span>фаврӣ</span></h1>
+  <p>
+    Бозиро интихоб кунед — ID → пакет → пардохт → тасдиқ
+  </p>
+</div>
 
-    <label>Регион</label>
-    <select id="region">
-      <option>🇹🇯 Tajikistan</option>
-      <option>🇮🇩 Indonesia</option>
-      <option>🇪🇸 Spain</option>
-    </select>
+<div class="games">
 
-    <label>Пакет</label>
-    <select id="package">
-      <option value="100 Diamonds — 9.30 TJS">
-        💎 100 Diamonds — 9.30 TJS
-      </option>
-      <option value="Lite Voucher — 4.50 TJS">
-        🎟️ Lite Voucher — 4.50 TJS
-      </option>
-      <option value="Weekly Voucher — 15.50 TJS">
-        📅 Weekly Voucher — 15.50 TJS
-      </option>
-      <option value="Monthly Voucher — 68.88 TJS">
-        📅 Monthly Voucher — 68.88 TJS
-      </option>
-    </select>
-
-    <label>Player ID</label>
-    <input id="playerId" type="text" placeholder="Введите Player ID">
-
-    <label>Пардохт</label>
-    <select id="payment">
-      <option>Alif</option>
-      <option>Dushanbe City</option>
-      <option>Eskhata</option>
-    </select>
-
-    <button class="buy" onclick="order()">
-      🛒 Заказать
-    </button>
-
-    <div id="status"></div>
-
+  <div class="game" onclick="openGame('Free Fire СНГ')">
+    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500">
+    <h3>Free Fire СНГ</h3>
+    <p>ID + пакет</p>
   </div>
 
-  <button class="telegram" onclick="openTelegram()">
-    💬 Telegram
-  </button>
+  <div class="game" onclick="openGame('Free Fire Indonesia')">
+    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500">
+    <h3>Free Fire Indonesia</h3>
+    <p>ID + пакет</p>
+  </div>
+
+  <div class="game" onclick="openGame('PUBG Mobile')">
+    <img src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?w=500">
+    <h3>PUBG Mobile</h3>
+    <p>Player ID</p>
+  </div>
+
+  <div class="game" onclick="openGame('Brawl Stars')">
+    <img src="https://images.unsplash.com/photo-1511882150382-421056c89033?w=500">
+    <h3>Brawl Stars</h3>
+    <p>ID + пакет</p>
+  </div>
+
+  <div class="game" onclick="openGame('8 Ball Pool')">
+    <img src="https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?w=500">
+    <h3>8 Ball Pool</h3>
+    <p>Player ID</p>
+  </div>
+
+  <div class="game" onclick="openGame('EA Sports FC Mobile')">
+    <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=500">
+    <h3>EA Sports FC</h3>
+    <p>Player ID</p>
+  </div>
+
+  <div class="game" onclick="openGame('Telegram')">
+    <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?w=500">
+    <h3>Telegram</h3>
+    <p>Stars / Premium</p>
+  </div>
+
+  <div class="game" onclick="openGame('Minecraft')">
+    <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=500">
+    <h3>Minecraft</h3>
+    <p>Донат</p>
+  </div>
+
+</div>
+
+<div class="bottom">
+
+  <div class="nav active" onclick="home()">
+    <div class="icon">💎</div>
+    Донат
+  </div>
+
+  <div class="nav" onclick="account()">
+    <div class="icon">👤</div>
+    Аккаунт
+  </div>
+
+  <div class="nav" onclick="payments()">
+    <div class="icon">💳</div>
+    Пардохт
+  </div>
+
+  <div class="nav" onclick="rating()">
+    <div class="icon">☆</div>
+    Рейтинг
+  </div>
+
+  <div class="nav" onclick="profile()">
+    <div class="icon">👤</div>
+    Ҳисоб
+  </div>
 
 </div>
 
 <script>
 
-  const tg = window.Telegram.WebApp;
-  tg.expand();
+function openGame(game){
+  alert("Шумо интихоб кардед: " + game);
+}
 
-  function selectGame(game) {
-    document.getElementById("gameName").innerText = game;
+function home(){
+  window.scrollTo({top:0,behavior:"smooth"});
+}
 
-    if (game !== "Free Fire") {
-      document.getElementById("status").innerText =
-        "⏳ Цены для " + game + " пока добавляются.";
-    } else {
-      document.getElementById("status").innerText = "";
-    }
-  }
+function account(){
+  alert("Аккаунт");
+}
 
-  function order() {
+function payments(){
+  alert("Пардохтҳо");
+}
 
-    const game = document.getElementById("gameName").innerText;
-    const region = document.getElementById("region").value;
-    const pack = document.getElementById("package").value;
-    const id = document.getElementById("playerId").value;
-    const payment = document.getElementById("payment").value;
+function rating(){
+  alert("Рейтинг");
+}
 
-    if (!id) {
-      document.getElementById("status").innerText =
-        "❌ Player ID-ро ворид кун!";
-      return;
-    }
-
-    const message =
-      "🎮 Danatx Games\n\n" +
-      "Game: " + game + "\n" +
-      "Region: " + region + "\n" +
-      "Package: " + pack + "\n" +
-      "Player ID: " + id + "\n" +
-      "Payment: " + payment;
-
-    document.getElementById("status").innerText =
-      "✅ Заказ қабул шуд!\n\n" + message;
-
-    tg.showAlert("✅ Заказ қабул шуд!");
-  }
-
-  function openTelegram() {
-    window.open("https://t.me/AmirDonateBot", "_blank");
-  }
+function profile(){
+  alert("Ҳисоб");
+}
 
 </script>
 
 </body>
-  </html>
+    </html>
