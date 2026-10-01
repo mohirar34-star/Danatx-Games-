@@ -1,1 +1,835 @@
-const API_BASE = "https://danatx-games-api.onrender.com";
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danatx Games 🎮</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #090d12;
+      color: #fff;
+    }
+
+    .app {
+      max-width: 600px;
+      margin: auto;
+      padding: 18px;
+    }
+
+    .header {
+      text-align: center;
+      padding: 10px 0 20px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .header p {
+      color: #9ca7b5;
+      margin: 7px 0 0;
+    }
+
+    .section {
+      margin-top: 18px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .games,
+    .products,
+    .payments {
+      display: grid;
+      gap: 10px;
+    }
+
+    .games {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .game {
+      padding: 15px 10px;
+      border-radius: 14px;
+      background: #171e27;
+      border: 1px solid #28313d;
+    }
+
+    .game.active {
+      background: #ff7300;
+      border-color: #ff7300;
+    }
+
+    .category {
+      margin-top: 18px;
+      margin-bottom: 8px;
+      color: #ff9b45;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .product {
+      width: 100%;
+      text-align: left;
+      padding: 15px;
+      border-radius: 14px;
+      background: #151c25;
+      border: 1px solid #27313e;
+    }
+
+    .product.active {
+      border-color: #ff7300;
+      background: #202833;
+    }
+
+    .product-name {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .price {
+      color: #ff9b45;
+      margin-top: 5px;
+      font-size: 15px;
+    }
+
+    .card {
+      margin-top: 18px;
+      background: #151c25;
+      border: 1px solid #27313e;
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 14px;
+      margin-top: 9px;
+      border: 0;
+      border-radius: 12px;
+      background: #222b36;
+      color: white;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .main-btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 12px;
+      border-radius: 12px;
+      background: #ff7300;
+    }
+
+    .main-btn:disabled {
+      background: #4b5159;
+      cursor: not-allowed;
+    }
+
+    .result {
+      margin-top: 12px;
+      padding: 13px;
+      border-radius: 12px;
+      background: #202833;
+      display: none;
+    }
+
+    .nickname {
+      font-size: 21px;
+      font-weight: bold;
+      margin: 7px 0;
+    }
+
+    .success {
+      color: #62e69a;
+    }
+
+    .error {
+      color: #ff7070;
+    }
+
+    .muted {
+      color: #9ca7b5;
+    }
+
+    .payment {
+      padding: 15px;
+      background: #171e27;
+      border: 1px solid #293440;
+      border-radius: 14px;
+      text-align: left;
+    }
+
+    .payment.active {
+      border-color: #ff7300;
+    }
+
+    .payment-name {
+      font-weight: bold;
+      font-size: 17px;
+    }
+
+    .payment-info {
+      display: none;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid #303a46;
+    }
+
+    .payment-info.show {
+      display: block;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 10px 0;
+      flex-wrap: wrap;
+    }
+
+    .copy-btn {
+      width: 100%;
+      padding: 11px;
+      margin-top: 8px;
+      border-radius: 10px;
+      background: #303b48;
+    }
+
+    .amount {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ff9b45;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .note {
+      margin-top: 12px;
+      color: #9ca7b5;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="header">
+    <h1>🎮 Danatx Games</h1>
+    <p>Game Top-Up Mini App</p>
+  </div>
+
+  <!-- GAMES -->
+  <div class="section">
+    <div class="section-title">Бозиҳо</div>
+
+    <div class="games">
+      <button class="game active" data-game="ff">
+        🔥 Free Fire CIS
+      </button>
+
+      <button class="game" data-game="pubg">
+        🔫 PUBG Mobile
+      </button>
+
+      <button class="game" data-game="brawl">
+        ⭐ Brawl Stars
+      </button>
+
+      <button class="game" data-game="standoff">
+        🎯 Standoff 2
+      </button>
+
+      <button class="game" data-game="minecraft">
+        ⛏️ Minecraft
+      </button>
+
+      <button class="game" data-game="telegram">
+        ✈️ Telegram
+      </button>
+    </div>
+  </div>
+
+
+  <!-- FREE FIRE PRODUCTS -->
+  <div id="ffProducts" class="section">
+
+    <div class="section-title">Free Fire CIS</div>
+
+    <!-- DIAMONDS -->
+    <div class="category">💎 Diamonds</div>
+
+    <div class="products">
+
+      <button class="product" data-name="100 + 10 Diamonds" data-price="8.00">
+        <div class="product-name">100 + 10 Diamonds</div>
+        <div class="price">8.00 TJS</div>
+      </button>
+
+      <button class="product" data-name="300 + 10 Diamonds" data-price="27.50">
+        <div class="product-name">300 + 10 Diamonds</div>
+        <div class="price">27.50 TJS</div>
+      </button>
+
+      <button class="product" data-name="500 + 72 Diamonds" data-price="44.00">
+        <div class="product-name">500 + 72 Diamonds</div>
+        <div class="price">44.00 TJS</div>
+      </button>
+
+      <button class="product" data-name="1100 + 66 Diamonds" data-price="88.00">
+        <div class="product-name">1100 + 66 Diamonds</div>
+        <div class="price">88.00 TJS</div>
+      </button>
+
+      <button class="product" data-name="2300 + 98 Diamonds" data-price="177.00">
+        <div class="product-name">2300 + 98 Diamonds</div>
+        <div class="price">177.00 TJS</div>
+      </button>
+
+      <button class="product" data-name="6100 + 60 Diamonds" data-price="446.00">
+        <div class="product-name">6100 + 60 Diamonds</div>
+        <div class="price">446.00 TJS</div>
+      </button>
+
+    </div>
+
+
+    <!-- VOUCHERS -->
+    <div class="category">🎟️ Vouchers</div>
+
+    <div class="products">
+
+      <button class="product" data-name="Lite Voucher" data-price="4.50">
+        <div class="product-name">Lite Voucher</div>
+        <div class="price">4.50 TJS</div>
+      </button>
+
+      <button class="product" data-name="Weekly Voucher" data-price="15.50">
+        <div class="product-name">Weekly Voucher</div>
+        <div class="price">15.50 TJS</div>
+      </button>
+
+      <button class="product" data-name="Monthly Voucher" data-price="65.00">
+        <div class="product-name">Monthly Voucher</div>
+        <div class="price">65.00 TJS</div>
+      </button>
+
+    </div>
+
+
+    <!-- LEVEL UPGRADES -->
+    <div class="category">⬆️ Level Upgrades</div>
+
+    <div class="products">
+
+      <button class="product" data-name="Level 6" data-price="3.30">
+        <div class="product-name">Level 6</div>
+        <div class="price">3.30 TJS</div>
+      </button>
+
+      <button class="product" data-name="Level 15" data-price="5.50">
+        <div class="product-name">Level 15</div>
+        <div class="price">5.50 TJS</div>
+      </button>
+
+      <button class="product" data-name="Level 20" data-price="5.50">
+        <div class="product-name">Level 20</div>
+        <div class="price">5.50 TJS</div>
+      </button>
+
+      <button class="product" data-name="Level 25" data-price="5.50">
+        <div class="product-name">Level 25</div>
+        <div class="price">5.50 TJS</div>
+      </button>
+
+      <button class="product" data-name="Level 30" data-price="8.10">
+        <div class="product-name">Level 30</div>
+        <div class="price">8.10 TJS</div>
+      </button>
+
+    </div>
+
+
+    <!-- UID -->
+    <div class="card">
+
+      <div class="section-title">👤 Player ID</div>
+
+      <input
+        id="uid"
+        type="text"
+        inputmode="numeric"
+        maxlength="15"
+        placeholder="UID-и Free Fire-ро ворид кун"
+      >
+
+      <select id="region">
+        <option value="RU">RU</option>
+        <option value="CIS">CIS</option>
+      </select>
+
+      <button id="checkUid" class="main-btn">
+        🔍 Проверить UID
+      </button>
+
+      <div id="uidResult" class="result"></div>
+
+    </div>
+
+
+    <!-- PAYMENT -->
+    <div id="paymentSection" class="card hidden">
+
+      <div class="section-title">💳 Пардохт</div>
+
+      <div class="row">
+        <span>Маҳсулот:</span>
+        <b id="selectedProduct">—</b>
+      </div>
+
+      <div class="row">
+        <span>Сумма:</span>
+        <span id="selectedAmount" class="amount">0.00 TJS</span>
+      </div>
+
+
+      <div class="category">Интихоби пардохт</div>
+
+      <div class="payments">
+
+        <button class="payment" data-payment="Alif">
+          <div class="payment-name">💳 Alif</div>
+
+          <div class="payment-info">
+
+            <div class="row">
+              <span>Соҳиби рақам:</span>
+              <b>Исмоилов А.</b>
+            </div>
+
+            <div class="row">
+              <span>Рақам:</span>
+              <b class="paymentNumber">992919724884</b>
+            </div>
+
+            <div class="row">
+              <span>Сумма:</span>
+              <b class="paymentAmount">0.00 TJS</b>
+            </div>
+
+            <button type="button" class="copy-btn">
+              📋 Copy number
+            </button>
+
+          </div>
+        </button>
+
+
+        <button class="payment" data-payment="Dushanbe City">
+          <div class="payment-name">🏦 Dushanbe City</div>
+
+          <div class="payment-info">
+
+            <div class="row">
+              <span>Соҳиби рақам:</span>
+              <b>Исмоилов А.</b>
+            </div>
+
+            <div class="row">
+              <span>Рақам:</span>
+              <b class="paymentNumber">992919724884</b>
+            </div>
+
+            <div class="row">
+              <span>Сумма:</span>
+              <b class="paymentAmount">0.00 TJS</b>
+            </div>
+
+            <button type="button" class="copy-btn">
+              📋 Copy number
+            </button>
+
+          </div>
+        </button>
+
+
+        <button class="payment" data-payment="Eskhata">
+          <div class="payment-name">🏦 Eskhata</div>
+
+          <div class="payment-info">
+
+            <div class="row">
+              <span>Соҳиби рақам:</span>
+              <b>Исмоилов А.</b>
+            </div>
+
+            <div class="row">
+              <span>Рақам:</span>
+              <b class="paymentNumber">992919724884</b>
+            </div>
+
+            <div class="row">
+              <span>Сумма:</span>
+              <b class="paymentAmount">0.00 TJS</b>
+            </div>
+
+            <button type="button" class="copy-btn">
+              📋 Copy number
+            </button>
+
+          </div>
+        </button>
+
+      </div>
+
+
+      <button id="paidBtn" class="main-btn" disabled>
+        ✅ Ман пардохт кардам
+      </button>
+
+      <div class="note">
+        Баъд аз пардохт чекро нигоҳ дор. Дар марҳилаи баъдӣ
+        фиристодани чек ба бот ва тасдиқи пардохтро пайваст мекунем.
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  /*
+    BACKEND API
+  */
+  const API_BASE = "https://danatx-games-api.onrender.com";
+
+
+  let selectedProduct = null;
+  let selectedPrice = 0;
+  let verifiedPlayer = null;
+  let selectedPayment = null;
+
+
+  /*
+    PRODUCT SELECT
+  */
+
+  document.querySelectorAll(".product").forEach(product => {
+
+    product.addEventListener("click", () => {
+
+      document.querySelectorAll(".product")
+        .forEach(p => p.classList.remove("active"));
+
+      product.classList.add("active");
+
+      selectedProduct = product.dataset.name;
+      selectedPrice = Number(product.dataset.price);
+
+      document.getElementById("selectedProduct").textContent =
+        selectedProduct;
+
+      document.getElementById("selectedAmount").textContent =
+        selectedPrice.toFixed(2) + " TJS";
+
+      document.querySelectorAll(".paymentAmount")
+        .forEach(el => {
+          el.textContent = selectedPrice.toFixed(2) + " TJS";
+        });
+
+      updatePaymentButton();
+
+    });
+
+  });
+
+
+  /*
+    UID CHECK
+  */
+
+  document.getElementById("checkUid").addEventListener("click", async () => {
+
+    const uid = document.getElementById("uid").value.trim();
+    const region = document.getElementById("region").value;
+
+    const result = document.getElementById("uidResult");
+
+    verifiedPlayer = null;
+
+    result.style.display = "block";
+    result.innerHTML = "⏳ UID санҷида истодааст...";
+
+    if (!/^\d{5,15}$/.test(uid)) {
+
+      result.innerHTML =
+        '<span class="error">❌ UID бояд аз 5 то 15 рақам бошад.</span>';
+
+      updatePaymentButton();
+      return;
+    }
+
+
+    try {
+
+      const response = await fetch(
+        `${API_BASE}/api/ff?uid=${encodeURIComponent(uid)}&region=${encodeURIComponent(region)}`
+      );
+
+      const data = await response.json();
+
+
+      if (!response.ok || !data.success) {
+
+        result.innerHTML =
+          `<span class="error">❌ ${escapeHtml(data.message || "Аккаунт ёфт нашуд.")}</span>`;
+
+        updatePaymentButton();
+        return;
+      }
+
+
+      verifiedPlayer = data;
+
+
+      result.innerHTML = `
+        <div class="success">✅ Аккаунт ёфт шуд</div>
+
+        <div class="nickname">
+          ${escapeHtml(data.nickname)}
+        </div>
+
+        <div class="muted">
+          UID: ${escapeHtml(String(data.uid))}
+        </div>
+
+        <div class="muted">
+          Level: ${escapeHtml(String(data.level))}
+        </div>
+
+        <div class="muted">
+          Region: ${escapeHtml(String(data.region))}
+        </div>
+      `;
+
+
+      document.getElementById("paymentSection")
+        .classList.remove("hidden");
+
+
+      updatePaymentButton();
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      result.innerHTML =
+        '<span class="error">❌ Backend дастрас нест. Баъдтар кӯшиш кун.</span>';
+
+      updatePaymentButton();
+
+    }
+
+  });
+
+
+  /*
+    PAYMENT SELECT
+  */
+
+  document.querySelectorAll(".payment").forEach(payment => {
+
+    payment.addEventListener("click", event => {
+
+      /*
+        Агар Copy button пахш шуда бошад,
+        payment интихоб карда нашавад.
+      */
+      if (event.target.classList.contains("copy-btn")) {
+        return;
+      }
+
+
+      document.querySelectorAll(".payment")
+        .forEach(p => {
+          p.classList.remove("active");
+          p.querySelector(".payment-info")
+            .classList.remove("show");
+        });
+
+
+      payment.classList.add("active");
+
+      payment.querySelector(".payment-info")
+        .classList.add("show");
+
+
+      selectedPayment = payment.dataset.payment;
+
+      updatePaymentButton();
+
+    });
+
+  });
+
+
+  /*
+    COPY PAYMENT NUMBER
+  */
+
+  document.querySelectorAll(".copy-btn").forEach(button => {
+
+    button.addEventListener("click", async event => {
+
+      event.stopPropagation();
+
+      const number =
+        button.parentElement
+          .querySelector(".paymentNumber")
+          .textContent.trim();
+
+      try {
+
+        await navigator.clipboard.writeText(number);
+
+        const oldText = button.textContent;
+
+        button.textContent = "✅ Copied";
+
+        setTimeout(() => {
+          button.textContent = oldText;
+        }, 1500);
+
+      } catch {
+
+        alert("Рақам: " + number);
+
+      }
+
+    });
+
+  });
+
+
+  /*
+    PAYMENT BUTTON
+  */
+
+  function updatePaymentButton() {
+
+    const paidBtn = document.getElementById("paidBtn");
+
+    paidBtn.disabled = !(
+      verifiedPlayer &&
+      selectedProduct &&
+      selectedPrice > 0 &&
+      selectedPayment
+    );
+
+  }
+
+
+  document.getElementById("paidBtn").addEventListener("click", () => {
+
+    if (!verifiedPlayer || !selectedProduct || !selectedPayment) {
+      return;
+    }
+
+
+    alert(
+      "Пардохт қайд шуд.\n\n" +
+      "Player: " + verifiedPlayer.nickname + "\n" +
+      "UID: " + verifiedPlayer.uid + "\n" +
+      "Маҳсулот: " + selectedProduct + "\n" +
+      "Сумма: " + selectedPrice.toFixed(2) + " TJS\n" +
+      "Пардохт: " + selectedPayment
+    );
+
+  });
+
+
+  /*
+    GAMES
+  */
+
+  document.querySelectorAll(".game").forEach(game => {
+
+    game.addEventListener("click", () => {
+
+      document.querySelectorAll(".game")
+        .forEach(g => g.classList.remove("active"));
+
+      game.classList.add("active");
+
+      if (game.dataset.game !== "ff") {
+
+        document.getElementById("ffProducts")
+          .classList.add("hidden");
+
+      } else {
+
+        document.getElementById("ffProducts")
+          .classList.remove("hidden");
+
+      }
+
+    });
+
+  });
+
+
+  /*
+    SECURITY: HTML ESCAPE
+  */
+
+  function escapeHtml(text) {
+
+    return String(text).replace(/[&<>"']/g, char => {
+
+      const map = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      };
+
+      return map[char];
+
+    });
+
+  }
+
+</script>
+
+</body>
+  </html>
