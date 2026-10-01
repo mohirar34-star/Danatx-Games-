@@ -1,115 +1,75 @@
-<!DOCTYPE html>
-<html lang="tg">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>DanatX Games</title>
+<div class="games">
 
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  -webkit-tap-highlight-color:transparent;
-}
+  <div class="game" onclick="openGame('Free Fire СНГ')">
+    <img class="game-img"
+    src="https://media.pocketgamer.biz/images/97564/73606/garena-free-fire_s470.jpg">
+    <div class="game-info">
+      <div class="game-name">Free Fire СНГ</div>
+      <div class="game-type">ID + пакет</div>
+    </div>
+  </div>
 
-body{
-  background:#090909;
-  color:white;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  min-height:100vh;
-}
+  <div class="game" onclick="openGame('Free Fire Индонезия')">
+    <img class="game-img"
+    src="https://media.pocketgamer.biz/images/97564/73606/garena-free-fire_s470.jpg">
+    <div class="game-info">
+      <div class="game-name">Free Fire Инд...</div>
+      <div class="game-type">Индонезия</div>
+    </div>
+  </div>
 
-.app{
-  max-width:520px;
-  margin:auto;
-  min-height:100vh;
-  padding-bottom:90px;
-}
+  <div class="game" onclick="openGame('PUBG Mobile')">
+    <img class="game-img"
+    src="https://1.bp.blogspot.com/-5Pac6QAl42g/X2Czl-uMwnI/AAAAAAAABMA/zcz9A2QHm08vbK8NE9qDOcu4UPZR0YYiACNcBGAsYHQ/s1304/pubg-mobile-1.png">
+    <div class="game-info">
+      <div class="game-name">PUBG Mobile</div>
+      <div class="game-type">Player ID</div>
+    </div>
+  </div>
 
-/* HEADER */
-.header{
-  height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:12px 16px;
-  position:sticky;
-  top:0;
-  z-index:10;
-  background:rgba(9,9,9,.94);
-  backdrop-filter:blur(15px);
-}
+  <div class="game" onclick="openGame('Mobile Legends')">
+    <img class="game-img"
+    src="https://berita.teknologi.id/uploads/article/1726115653_ZkNZ0iol0Zci9G7H_MobileLegendsheroes.jpg">
+    <div class="game-info">
+      <div class="game-name">Mobile Legends</div>
+      <div class="game-type">ID + Zone</div>
+    </div>
+  </div>
 
-.left{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
+  <div class="game" onclick="openGame('8 Ball Pool')">
+    <img class="game-img"
+    src="https://gamesbymanuel.com/wp-content/uploads/2014/07/8bp_header.jpg">
+    <div class="game-info">
+      <div class="game-name">8 Ball Pool</div>
+      <div class="game-type">Player ID</div>
+    </div>
+  </div>
 
-.close{
-  font-size:29px;
-  color:#aaa;
-}
+  <div class="game" onclick="openGame('EA Sports FC Mobile')">
+    <img class="game-img"
+    src="https://www.codashop.com/cdn-cgi/image/width=600,quality=85,format=auto/https://cdn2.codashop.com/images/ea-sports-fc-mobile.jpg">
+    <div class="game-info">
+      <div class="game-name">EA Sports FC</div>
+      <div class="game-type">Player ID</div>
+    </div>
+  </div>
 
-.title{
-  font-size:18px;
-  font-weight:700;
-}
+  <div class="game" onclick="openGame('Telegram')">
+    <img class="game-img"
+    src="https://cs18.pikabu.ru/s/2025/12/30/03/kfdbdy5h_lg.png">
+    <div class="game-info">
+      <div class="game-name">Telegram</div>
+      <div class="game-type">Stars / Premium</div>
+    </div>
+  </div>
 
-.sub{
-  color:#888;
-  font-size:12px;
-  margin-top:2px;
-}
+  <div class="game" onclick="openGame('Minecraft')">
+    <img class="game-img"
+    src="https://image.api.playstation.com/vulcan/img/cfn/11307uYG0CXzRuA9aryByTHYrQLFz-HVQ3VVl7aAysxK15HMpqjkAIcC_R5vdfZt52hAXQNHoYhSuoSq_46_MT_tDBcLu49I.png">
+    <div class="game-info">
+      <div class="game-name">Minecraft</div>
+      <div class="game-type">Донат</div>
+    </div>
+  </div>
 
-.arrow{
-  color:#888;
-  font-size:15px;
-}
-
-.dots{
-  font-size:24px;
-  color:#aaa;
-}
-
-/* BALANCE */
-.balance{
-  margin:5px 16px 15px;
-  background:#171717;
-  border:1px solid #292929;
-  border-radius:18px;
-  padding:13px 16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.balance small{
-  color:#888;
-  display:block;
-  font-size:12px;
-}
-
-.balance strong{
-  font-size:19px;
-}
-
-.plus{
-  width:38px;
-  height:38px;
-  border-radius:13px;
-  background:#ff9d00;
-  color:#111;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
-  font-weight:bold;
-}
-
-/* PROMO */
-.promo{
-  margin:0 16px 20px;
-  padding:18px;
-  border
+      </div>
