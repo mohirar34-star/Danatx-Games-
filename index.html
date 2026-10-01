@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Donator Games</title>
+<title>DanatX Games</title>
 
 <style>
 *{
@@ -14,537 +14,102 @@
 }
 
 body{
-  background:#050505;
-  color:#fff;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;
-  padding-bottom:105px;
+  background:#090909;
+  color:white;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  min-height:100vh;
 }
 
-/* TOP */
+.app{
+  max-width:520px;
+  margin:auto;
+  min-height:100vh;
+  padding-bottom:90px;
+}
 
-.topbar{
+/* HEADER */
+.header{
   height:70px;
   display:flex;
   align-items:center;
-  padding:0 18px;
-  border-bottom:1px solid #151515;
+  justify-content:space-between;
+  padding:12px 16px;
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(9,9,9,.94);
+  backdrop-filter:blur(15px);
+}
+
+.left{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .close{
-  font-size:38px;
-  font-weight:200;
-  line-height:1;
-  margin-right:25px;
+  font-size:29px;
+  color:#aaa;
 }
 
-.top-title{
-  font-size:22px;
+.title{
+  font-size:18px;
   font-weight:700;
 }
 
-.top-right{
-  margin-left:auto;
-  display:flex;
-  gap:22px;
-  align-items:center;
+.sub{
+  color:#888;
+  font-size:12px;
+  margin-top:2px;
 }
 
-.chevron{
-  font-size:34px;
-  transform:rotate(45deg);
+.arrow{
+  color:#888;
+  font-size:15px;
 }
 
 .dots{
-  font-size:28px;
+  font-size:24px;
+  color:#aaa;
 }
 
-/* ACCOUNT */
-
-.account{
-  margin:12px 22px 18px;
-  height:88px;
-  padding:10px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  border-radius:44px;
-
-  background:linear-gradient(
-    110deg,
-    #17130d,
-    #211a0e,
-    #11100e
-  );
-
-  border:1px solid #39342b;
-  box-shadow:0 8px 30px rgba(0,0,0,.35);
-}
-
-.logo{
-  width:64px;
-  height:64px;
-  flex:none;
-  border-radius:20px;
-  background:
-    radial-gradient(circle at 50% 35%,#555,#111 55%);
-  border:1px solid #514b40;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:31px;
-}
-
-.brand{
-  flex:1;
-  min-width:0;
-  font-size:20px;
-  font-weight:700;
-  white-space:nowrap;
-}
-
-.brand span{
-  color:#ff9d00;
-}
-
-.star{
-  width:56px;
-  height:56px;
-  flex:none;
-  border-radius:20px;
-  border:1px solid #514b40;
-  background:#282117;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#b864ff;
-  font-size:28px;
-}
-
+/* BALANCE */
 .balance{
-  height:56px;
-  padding:0 15px;
-  border-radius:20px;
-  border:1px solid #a66d0b;
-  background:#2b210c;
-  color:#ffad19;
-  display:flex;
-  align-items:center;
-  gap:7px;
-  font-size:17px;
-  font-weight:700;
-  white-space:nowrap;
-}
-
-/* HERO */
-
-.hero{
-  margin:0 22px 18px;
-  min-height:150px;
-  padding:25px 22px;
-  border-radius:31px;
-
-  background:
-    linear-gradient(145deg,#19191b,#0e0e0f);
-
-  border:1px solid #303034;
-  box-shadow:0 8px 25px rgba(0,0,0,.35);
-
-  position:relative;
-}
-
-.hero h1{
-  font-size:34px;
-  line-height:1.1;
-  margin-bottom:14px;
-}
-
-.hero h1 span{
-  color:#ff9d00;
-}
-
-.hero p{
-  color:#858589;
-  font-size:17px;
-  line-height:1.45;
-}
-
-.hero-price{
-  position:absolute;
-  right:22px;
-  top:42px;
-  text-align:right;
-}
-
-.hero-price small{
-  display:block;
-  color:#777;
-  font-size:16px;
-  margin-bottom:5px;
-}
-
-.hero-price strong{
-  color:#ff9d00;
-  font-size:31px;
-}
-
-/* GAMES */
-
-.games{
-  padding:0 22px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-}
-
-.game{
-  min-width:0;
-  padding:9px;
-  min-height:195px;
-
-  border-radius:25px;
-
-  background:
-    linear-gradient(145deg,#18181a,#0d0d0e);
-
-  border:1px solid #303034;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.025),
-    0 7px 18px rgba(0,0,0,.3);
-
-  transition:.15s;
-}
-
-.game:active{
-  transform:scale(.95);
-}
-
-.game-image{
-  width:100%;
-  aspect-ratio:1/1;
+  margin:5px 16px 15px;
+  background:#171717;
+  border:1px solid #292929;
   border-radius:18px;
-  overflow:hidden;
-  background:#151515;
+  padding:13px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.game-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.balance small{
+  color:#888;
   display:block;
-}
-
-.game-name{
-  margin:10px 3px 0;
-  font-size:14px;
-  line-height:1.2;
-  font-weight:700;
-
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.game-sub{
-  margin:5px 3px 0;
-  color:#777;
   font-size:12px;
 }
 
-/* BOTTOM */
-
-.bottom{
-  position:fixed;
-  left:22px;
-  right:22px;
-  bottom:12px;
-
-  height:82px;
-
-  border-radius:31px;
-
-  background:rgba(24,24,26,.96);
-  border:1px solid #3b3b3f;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-around;
-
-  z-index:100;
-
-  box-shadow:
-    0 -5px 30px rgba(0,0,0,.45),
-    0 8px 30px rgba(0,0,0,.4);
-
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
+.balance strong{
+  font-size:19px;
 }
 
-.nav{
-  width:20%;
-  text-align:center;
-  color:#777;
-  font-size:11px;
-}
-
-.nav-icon{
-  font-size:25px;
-  height:31px;
+.plus{
+  width:38px;
+  height:38px;
+  border-radius:13px;
+  background:#ff9d00;
+  color:#111;
   display:flex;
   align-items:center;
   justify-content:center;
+  font-size:25px;
+  font-weight:bold;
 }
 
-.nav.active{
-  color:#ff9d00;
-}
-
-.nav.active .nav-icon{
-  color:#ff9d00;
-}
-
-/* SMALL PHONES */
-
-@media(max-width:380px){
-
-  .account{
-    margin-left:14px;
-    margin-right:14px;
-  }
-
-  .hero{
-    margin-left:14px;
-    margin-right:14px;
-  }
-
-  .games{
-    padding:0 14px;
-    gap:8px;
-  }
-
-  .game{
-    padding:7px;
-    min-height:175px;
-  }
-
-  .game-name{
-    font-size:12px;
-  }
-
-  .balance{
-    padding:0 10px;
-    font-size:14px;
-  }
-
-  .brand{
-    font-size:17px;
-  }
-
-  .star{
-    display:none;
-  }
-
-  .hero h1{
-    font-size:29px;
-  }
-
-  .hero-price{
-    right:16px;
-  }
-
-  .hero-price strong{
-    font-size:24px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<!-- TOP -->
-
-<div class="topbar">
-  <div class="close">×</div>
-  <div class="top-title">Donator Games</div>
-
-  <div class="top-right">
-    <div class="chevron">⌄</div>
-    <div class="dots">⋮</div>
-  </div>
-</div>
-
-
-<!-- ACCOUNT -->
-
-<div class="account">
-
-  <div class="logo">🎮</div>
-
-  <div class="brand">
-    Donator <span>Games</span>
-  </div>
-
-  <div class="star">✦</div>
-
-  <div class="balance">
-    💳 0,53 TJS
-  </div>
-
-</div>
-
-
-<!-- HERO -->
-
-<div class="hero">
-
-  <h1>
-    Донат <span>фаврӣ</span>
-  </h1>
-
-  <p>
-    Бозиро интихоб кунед — ID → пакет →<br>
-    тасдиқ
-  </p>
-
-  <div class="hero-price">
-    <small>Тавозун</small>
-    <strong>0,53 <small style="display:inline;color:#fff;font-size:14px">TJS</small></strong>
-  </div>
-
-</div>
-
-
-<!-- GAMES -->
-
-<div class="games">
-
-  <div class="game" onclick="openGame('Free Fire СНГ')">
-    <div class="game-image">
-      <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400">
-    </div>
-    <div class="game-name">Free Fire СНГ</div>
-    <div class="game-sub">ID + пакет</div>
-  </div>
-
-
-  <div class="game" onclick="openGame('Free Fire Индонезия')">
-    <div class="game-image">
-      <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400">
-    </div>
-    <div class="game-name">Free Fire Инд...</div>
-    <div class="game-sub">Индонезия</div>
-  </div>
-
-
-  <div class="game" onclick="openGame('PUBG Mobile')">
-    <div class="game-image">
-      <img src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?w=400">
-    </div>
-    <div class="game-name">PUBG Mobile</div>
-    <div class="game-sub">Player ID</div>
-  </div>
-
-
-  <div class="game" onclick="openGame('Mobile Legends')">
-    <div class="game-image">
-      <img src="https://images.unsplash.com/photo-1511882150382-421056c89033?w=400">
-    </div>
-    <div class="game-name">Mobile Legends</div>
-    <div class="game-sub">ID + Zone</div>
-  </div>
-
-
-  <div class="game" onclick="openGame('8 Ball Pool')">
-    <div class="game-image">
-      <img src="https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?w=400">
-    </div>
-    <div class="game-name">8 Ball Pool</div>
-    <div class="game-sub">Player ID</div>
-  </div>
-
-
-  <div class="game" onclick="openGame('EA Sports FC')">
-    <div class="game-image">
-      <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=400">
-    </div>
-    <div class="game-name">EA Sports FC</div>
-    <div class="game-sub">Player ID</div>
-  </div>
-
-
-  <div class="game" onclick="openGame('Telegram')">
-    <div class="game-image">
-      <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?w=400">
-    </div>
-    <div class="game-name">Telegram</div>
-    <div class="game-sub">Stars / Premium</div>
-  </div>
-
-
-  <div class="game" onclick="openGame('Minecraft')">
-    <div class="game-image">
-      <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400">
-    </div>
-    <div class="game-name">Minecraft</div>
-    <div class="game-sub">Донат</div>
-  </div>
-
-
-  <div class="game" onclick="openGame('Бозиҳои дигар')">
-    <div class="game-image">
-      <img src="https://images.unsplash.com/photo-1542751110-97427bbecf20?w=400">
-    </div>
-    <div class="game-name">Бозиҳои дигар</div>
-    <div class="game-sub">Бештар</div>
-  </div>
-
-</div>
-
-
-<!-- BOTTOM -->
-
-<div class="bottom">
-
-  <div class="nav active">
-    <div class="nav-icon">💎</div>
-    Донат
-  </div>
-
-  <div class="nav">
-    <div class="nav-icon">♙</div>
-    Аккаунт
-  </div>
-
-  <div class="nav">
-    <div class="nav-icon">▣</div>
-    Пардохт
-  </div>
-
-  <div class="nav">
-    <div class="nav-icon">☆</div>
-    Рейтинг
-  </div>
-
-  <div class="nav">
-    <div class="nav-icon">♙</div>
-    Ҳисоб
-  </div>
-
-</div>
-
-
-<script>
-
-function openGame(game){
-
-  alert(
-    "🎮 " + game +
-    "\n\nҚадами навбатӣ: ID → пакет → пардохт"
-  );
-
-}
-
-</script>
-
-</body>
-  </html>
+/* PROMO */
+.promo{
+  margin:0 16px 20px;
+  padding:18px;
+  border
