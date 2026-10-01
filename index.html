@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danatx Games 🎮</title>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0f19;
+      color: white;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #9ca3af;
+      margin-bottom: 25px;
+    }
+
+    .games {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    button {
+      border: none;
+      border-radius: 14px;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .game {
+      background: #171d2b;
+      color: white;
+    }
+
+    .game:hover {
+      background: #222b3e;
+    }
+
+    .section {
+      margin-top: 25px;
+      background: #121826;
+      padding: 18px;
+      border-radius: 16px;
+    }
+
+    select,
+    input {
+      width: 100%;
+      padding: 13px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: 1px solid #30394d;
+      background: #0b0f19;
+      color: white;
+      font-size: 15px;
+    }
+
+    .buy {
+      width: 100%;
+      margin-top: 15px;
+      background: #2ea6ff;
+      color: white;
+    }
+
+    .telegram {
+      width: 100%;
+      margin-top: 15px;
+      background: #229ed9;
+      color: white;
+    }
+
+    #status {
+      text-align: center;
+      margin-top: 15px;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>🎮 Danatx Games</h1>
+  <div class="subtitle">Game Top Up</div>
+
+  <div class="games">
+    <button class="game" onclick="selectGame('Free Fire')">🔥 Free Fire</button>
+    <button class="game" onclick="selectGame('PUBG Mobile')">🔫 PUBG Mobile</button>
+    <button class="game" onclick="selectGame('Brawl Stars')">⭐ Brawl Stars</button>
+    <button class="game" onclick="selectGame('Standoff 2')">🎯 Standoff 2</button>
+    <button class="game" onclick="selectGame('Minecraft')">⛏️ Minecraft</button>
+    <button class="game" onclick="openTelegram()">📱 Telegram</button>
+  </div>
+
+  <div class="section">
+
+    <h3 id="gameName">🔥 Free Fire</h3>
+
+    <label>Регион</label>
+    <select id="region">
+      <option>🇹🇯 Tajikistan</option>
+      <option>🇮🇩 Indonesia</option>
+      <option>🇪🇸 Spain</option>
+    </select>
+
+    <label>Пакет</label>
+    <select id="package">
+      <option value="100 Diamonds — 9.30 TJS">
+        💎 100 Diamonds — 9.30 TJS
+      </option>
+      <option value="Lite Voucher — 4.50 TJS">
+        🎟️ Lite Voucher — 4.50 TJS
+      </option>
+      <option value="Weekly Voucher — 15.50 TJS">
+        📅 Weekly Voucher — 15.50 TJS
+      </option>
+      <option value="Monthly Voucher — 68.88 TJS">
+        📅 Monthly Voucher — 68.88 TJS
+      </option>
+    </select>
+
+    <label>Player ID</label>
+    <input id="playerId" type="text" placeholder="Введите Player ID">
+
+    <label>Пардохт</label>
+    <select id="payment">
+      <option>Alif</option>
+      <option>Dushanbe City</option>
+      <option>Eskhata</option>
+    </select>
+
+    <button class="buy" onclick="order()">
+      🛒 Заказать
+    </button>
+
+    <div id="status"></div>
+
+  </div>
+
+  <button class="telegram" onclick="openTelegram()">
+    💬 Telegram
+  </button>
+
+</div>
+
+<script>
+
+  const tg = window.Telegram.WebApp;
+  tg.expand();
+
+  function selectGame(game) {
+    document.getElementById("gameName").innerText = game;
+
+    if (game !== "Free Fire") {
+      document.getElementById("status").innerText =
+        "⏳ Цены для " + game + " пока добавляются.";
+    } else {
+      document.getElementById("status").innerText = "";
+    }
+  }
+
+  function order() {
+
+    const game = document.getElementById("gameName").innerText;
+    const region = document.getElementById("region").value;
+    const pack = document.getElementById("package").value;
+    const id = document.getElementById("playerId").value;
+    const payment = document.getElementById("payment").value;
+
+    if (!id) {
+      document.getElementById("status").innerText =
+        "❌ Player ID-ро ворид кун!";
+      return;
+    }
+
+    const message =
+      "🎮 Danatx Games\n\n" +
+      "Game: " + game + "\n" +
+      "Region: " + region + "\n" +
+      "Package: " + pack + "\n" +
+      "Player ID: " + id + "\n" +
+      "Payment: " + payment;
+
+    document.getElementById("status").innerText =
+      "✅ Заказ қабул шуд!\n\n" + message;
+
+    tg.showAlert("✅ Заказ қабул шуд!");
+  }
+
+  function openTelegram() {
+    window.open("https://t.me/AmirDonateBot", "_blank");
+  }
+
+</script>
+
+</body>
+  </html>
