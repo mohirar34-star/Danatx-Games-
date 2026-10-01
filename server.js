@@ -22,17 +22,31 @@ app.get("/api/ff", async (req, res) => {
 
   try {
     const apiUrl =
-      "https://free-ff-api-src-5plp.onrender.com/api/v1/account" +
+      `https://free-ff-api-src-5plp.onrender.com/api/v1/account` +
       `?region=${encodeURIComponent(region)}` +
       `&uid=${encodeURIComponent(uid)}`;
 
     const response = await fetch(apiUrl);
-    const data = await response.json();
+
+    const text = await response.text();
+
+    let data;
+
+    try {
+      data = JSON.parse(text);
+    } catch {
+      return res.status(502).json({
+        success: false,
+        message: "Free Fire API ҷавоби дурусти JSON надод",
+        apiStatus: response.status
+      });
+    }
 
     if (!response.ok) {
-      return res.status(response.status).json({
+      return res.status(502).json({
         success: false,
-        message: data.message || "Player ёфт нашуд"
+        message: data.message || "Free Fire API хато дод",
+        apiStatus: response.status
       });
     }
 
@@ -45,20 +59,20 @@ app.get("/api/ff", async (req, res) => {
       });
     }
 
-    res.json({
+    return res.json({
       success: true,
       uid: info.accountId || uid,
       nickname: info.nickname,
-      level: info.level,
-      region: info.region
+      level: info.level ?? null,
+      region: info.region || region
     });
 
   } catch (error) {
-    console.error(error);
+    console.error("FREE FIRE API ERROR:", error);
 
-    res.status(500).json({
+    return res.status(502).json({
       success: false,
-      message: "Хатогии сервер"
+      message: "Пайвастшавӣ ба Free Fire API ноком шуд"
     });
   }
 });
