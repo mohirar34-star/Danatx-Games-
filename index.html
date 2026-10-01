@@ -1,75 +1,21 @@
-<div class="games">
+Upgrade the Mini App into a real automated Free Fire CIS top-up flow.
 
-  <div class="game" onclick="openGame('Free Fire СНГ')">
-    <img class="game-img"
-      src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=700&q=80">
-    <div class="game-info">
-      <div class="game-name">Free Fire СНГ</div>
-      <div class="game-type">Diamonds</div>
-    </div>
-  </div>
-
-  <div class="game" onclick="openGame('Free Fire Indonesia')">
-    <img class="game-img"
-      src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=700&q=80">
-    <div class="game-info">
-      <div class="game-name">Free Fire ID</div>
-      <div class="game-type">Diamonds</div>
-    </div>
-  </div>
-
-  <div class="game" onclick="openGame('PUBG Mobile')">
-    <img class="game-img"
-      src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?auto=format&fit=crop&w=700&q=80">
-    <div class="game-info">
-      <div class="game-name">PUBG Mobile</div>
-      <div class="game-type">UC</div>
-    </div>
-  </div>
-
-  <div class="game" onclick="openGame('Brawl Stars')">
-    <img class="game-img"
-      src="https://images.unsplash.com/photo-1606166187734-a4cb2f9f2f4a?auto=format&fit=crop&w=700&q=80">
-    <div class="game-info">
-      <div class="game-name">Brawl Stars</div>
-      <div class="game-type">Gems</div>
-    </div>
-  </div>
-
-  <div class="game" onclick="openGame('EA Sports FC Mobile')">
-    <img class="game-img"
-      src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=700&q=80">
-    <div class="game-info">
-      <div class="game-name">FC Mobile</div>
-      <div class="game-type">Points</div>
-    </div>
-  </div>
-
-  <div class="game" onclick="openGame('8 Ball Pool')">
-    <img class="game-img"
-      src="https://images.unsplash.com/photo-1589710751893-f9a6770ad71b?auto=format&fit=crop&w=700&q=80">
-    <div class="game-info">
-      <div class="game-name">8 Ball Pool</div>
-      <div class="game-type">Coins</div>
-    </div>
-  </div>
-
-  <div class="game" onclick="openGame('Telegram')">
-    <img class="game-img"
-      src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&w=700&q=80">
-    <div class="game-info">
-      <div class="game-name">Telegram</div>
-      <div class="game-type">Stars</div>
-    </div>
-  </div>
-
-  <div class="game" onclick="openGame('Minecraft')">
-    <img class="game-img"
-      src="https://images.unsplash.com/photo-1607513746994-51f730a44832?auto=format&fit=crop&w=700&q=80">
-    <div class="game-info">
-      <div class="game-name">Minecraft</div>
-      <div class="game-type">Coins</div>
-    </div>
-  </div>
-
-    </div>
+Requirements:
+1. When the user selects Free Fire, show the full 14-product Free Fire CIS catalog.
+2. Separate products into:
+   - Diamonds
+   - Vouchers
+   - Level Upgrades
+3. After selecting a product, ask for the Free Fire Player UID.
+4. Add a server-side UID validation/account lookup integration. If a real Free Fire API is not available, do NOT fake the player name. Show a clear error instead.
+5. After a valid UID, display the returned Free Fire nickname and ask the user to confirm it.
+6. Show payment methods: Alif, Dushanbe City, Eskhata.
+7. When a payment method is selected, display the configured merchant/payment details and exact order amount.
+8. Do not expose private API keys, bot tokens, passwords, or secrets in the frontend. Use environment variables/Replit Secrets.
+9. Add server-side payment verification through the official payment provider API/webhook if available. Do not mark an order as paid based only on a button click or screenshot.
+10. After verified payment, send the order to the configured Free Fire top-up provider API.
+11. Only mark the order as completed after the provider confirms successful delivery.
+12. Send order status updates to the Telegram admin bot.
+13. Keep Indonesia and Spain unchanged.
+14. Do not break existing orders or the existing Telegram bot flow.
+15. If any required official API is unavailable, tell me exactly which API credentials/integration are required instead of creating a fake implementation.
