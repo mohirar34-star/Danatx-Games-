@@ -1,21 +1,118 @@
-Upgrade the Mini App into a real automated Free Fire CIS top-up flow.
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danatx Games 🎮</title>
 
-Requirements:
-1. When the user selects Free Fire, show the full 14-product Free Fire CIS catalog.
-2. Separate products into:
-   - Diamonds
-   - Vouchers
-   - Level Upgrades
-3. After selecting a product, ask for the Free Fire Player UID.
-4. Add a server-side UID validation/account lookup integration. If a real Free Fire API is not available, do NOT fake the player name. Show a clear error instead.
-5. After a valid UID, display the returned Free Fire nickname and ask the user to confirm it.
-6. Show payment methods: Alif, Dushanbe City, Eskhata.
-7. When a payment method is selected, display the configured merchant/payment details and exact order amount.
-8. Do not expose private API keys, bot tokens, passwords, or secrets in the frontend. Use environment variables/Replit Secrets.
-9. Add server-side payment verification through the official payment provider API/webhook if available. Do not mark an order as paid based only on a button click or screenshot.
-10. After verified payment, send the order to the configured Free Fire top-up provider API.
-11. Only mark the order as completed after the provider confirms successful delivery.
-12. Send order status updates to the Telegram admin bot.
-13. Keep Indonesia and Spain unchanged.
-14. Do not break existing orders or the existing Telegram bot flow.
-15. If any required official API is unavailable, tell me exactly which API credentials/integration are required instead of creating a fake implementation.
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#0b0f18;
+  color:#fff;
+}
+.app{
+  max-width:520px;
+  margin:auto;
+  padding:18px;
+}
+.header{
+  text-align:center;
+  padding:18px 0 22px;
+}
+.logo{
+  font-size:28px;
+  font-weight:800;
+}
+.sub{
+  color:#8d96a8;
+  margin-top:6px;
+}
+.section-title{
+  font-size:18px;
+  font-weight:700;
+  margin:20px 0 12px;
+}
+.games{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.game{
+  background:#151b28;
+  border:1px solid #252d3d;
+  border-radius:16px;
+  padding:18px 10px;
+  text-align:center;
+  cursor:pointer;
+  transition:.15s;
+}
+.game:active{
+  transform:scale(.97);
+}
+.game.active{
+  border-color:#fff;
+  background:#20283a;
+}
+.icon{
+  font-size:32px;
+  margin-bottom:8px;
+}
+.card{
+  background:#151b28;
+  border:1px solid #252d3d;
+  border-radius:18px;
+  padding:16px;
+  margin-top:12px;
+}
+.category{
+  width:100%;
+  border:0;
+  border-radius:12px;
+  padding:13px;
+  margin:6px 0;
+  background:#20283a;
+  color:#fff;
+  font-size:15px;
+  text-align:left;
+  cursor:pointer;
+}
+.product{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  background:#101620;
+  border:1px solid #252d3d;
+  border-radius:13px;
+  padding:13px;
+  margin:8px 0;
+  cursor:pointer;
+}
+.product:hover{
+  border-color:#59657c;
+}
+.price{
+  white-space:nowrap;
+  font-weight:700;
+}
+input,select{
+  width:100%;
+  padding:14px;
+  margin:7px 0;
+  border-radius:12px;
+  border:1px solid #30394b;
+  background:#0e141f;
+  color:#fff;
+  font-size:15px;
+}
+button{
+  font-family:inherit;
+}
+.primary{
+  width:100%;
+  border:0;
+  border-radius:13px;
+  padding:
