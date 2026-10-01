@@ -1,118 +1,528 @@
 <!DOCTYPE html>
 <html lang="tg">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Danatx Games 🎮</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danatx Games 🎮</title>
 
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#0b0f18;
-  color:#fff;
-}
-.app{
-  max-width:520px;
-  margin:auto;
-  padding:18px;
-}
-.header{
-  text-align:center;
-  padding:18px 0 22px;
-}
-.logo{
-  font-size:28px;
-  font-weight:800;
-}
-.sub{
-  color:#8d96a8;
-  margin-top:6px;
-}
-.section-title{
-  font-size:18px;
-  font-weight:700;
-  margin:20px 0 12px;
-}
-.games{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-.game{
-  background:#151b28;
-  border:1px solid #252d3d;
-  border-radius:16px;
-  padding:18px 10px;
-  text-align:center;
-  cursor:pointer;
-  transition:.15s;
-}
-.game:active{
-  transform:scale(.97);
-}
-.game.active{
-  border-color:#fff;
-  background:#20283a;
-}
-.icon{
-  font-size:32px;
-  margin-bottom:8px;
-}
-.card{
-  background:#151b28;
-  border:1px solid #252d3d;
-  border-radius:18px;
-  padding:16px;
-  margin-top:12px;
-}
-.category{
-  width:100%;
-  border:0;
-  border-radius:12px;
-  padding:13px;
-  margin:6px 0;
-  background:#20283a;
-  color:#fff;
-  font-size:15px;
-  text-align:left;
-  cursor:pointer;
-}
-.product{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  background:#101620;
-  border:1px solid #252d3d;
-  border-radius:13px;
-  padding:13px;
-  margin:8px 0;
-  cursor:pointer;
-}
-.product:hover{
-  border-color:#59657c;
-}
-.price{
-  white-space:nowrap;
-  font-weight:700;
-}
-input,select{
-  width:100%;
-  padding:14px;
-  margin:7px 0;
-  border-radius:12px;
-  border:1px solid #30394b;
-  background:#0e141f;
-  color:#fff;
-  font-size:15px;
-}
-button{
-  font-family:inherit;
-}
-.primary{
-  width:100%;
-  border:0;
-  border-radius:13px;
-  padding:
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0f18;
+      color: white;
+      min-height: 100vh;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 520px;
+      margin: auto;
+      padding: 18px;
+    }
+
+    .header {
+      text-align: center;
+      padding: 15px 0 25px;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      color: #8f99aa;
+      margin-top: 7px;
+      font-size: 14px;
+    }
+
+    h2 {
+      font-size: 19px;
+      margin-bottom: 14px;
+    }
+
+    .games {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .game {
+      background: #151b28;
+      border: 1px solid #273043;
+      border-radius: 17px;
+      padding: 22px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: .15s;
+    }
+
+    .game:active {
+      transform: scale(.96);
+    }
+
+    .game-icon {
+      font-size: 35px;
+      margin-bottom: 9px;
+    }
+
+    .game-name {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .panel {
+      background: #151b28;
+      border: 1px solid #273043;
+      border-radius: 17px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .category {
+      width: 100%;
+      border: 1px solid #30394c;
+      background: #1d2534;
+      color: white;
+      padding: 15px;
+      margin-bottom: 9px;
+      border-radius: 13px;
+      text-align: left;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .category:active {
+      transform: scale(.98);
+    }
+
+    .product {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px;
+      margin-bottom: 9px;
+      border-radius: 13px;
+      background: #0f151f;
+      border: 1px solid #293345;
+      cursor: pointer;
+    }
+
+    .product-name {
+      font-size: 14px;
+    }
+
+    .price {
+      white-space: nowrap;
+      font-weight: bold;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 14px;
+      margin-top: 9px;
+      background: #0d131d;
+      border: 1px solid #30394c;
+      border-radius: 12px;
+      color: white;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .button {
+      width: 100%;
+      border: none;
+      border-radius: 13px;
+      padding: 15px;
+      margin-top: 10px;
+      background: white;
+      color: black;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .back {
+      background: #202838;
+      color: white;
+    }
+
+    .info {
+      color: #929bad;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 9px;
+    }
+
+    .selected {
+      border-color: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .amount {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="header">
+    <div class="logo">Danatx Games 🎮</div>
+    <div class="subtitle">Пополнение игр быстро и удобно</div>
+  </div>
+
+  <!-- GAMES -->
+  <div id="gamesScreen">
+
+    <h2>Выберите игру</h2>
+
+    <div class="games">
+
+      <div class="game" onclick="openFreeFire()">
+        <div class="game-icon">🔥</div>
+        <div class="game-name">Free Fire</div>
+      </div>
+
+      <div class="game" onclick="comingSoon('PUBG Mobile')">
+        <div class="game-icon">🎯</div>
+        <div class="game-name">PUBG Mobile</div>
+      </div>
+
+      <div class="game" onclick="comingSoon('Brawl Stars')">
+        <div class="game-icon">⭐</div>
+        <div class="game-name">Brawl Stars</div>
+      </div>
+
+      <div class="game" onclick="comingSoon('Standoff 2')">
+        <div class="game-icon">🔫</div>
+        <div class="game-name">Standoff 2</div>
+      </div>
+
+      <div class="game" onclick="comingSoon('Minecraft')">
+        <div class="game-icon">⛏️</div>
+        <div class="game-name">Minecraft</div>
+      </div>
+
+      <div class="game" onclick="openTelegram()">
+        <div class="game-icon">✈️</div>
+        <div class="game-name">Telegram</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- FREE FIRE -->
+  <div id="freeFireScreen" class="hidden">
+
+    <div class="panel">
+      <h2>🔥 Free Fire CIS</h2>
+
+      <button class="category" onclick="showProducts('diamonds')">
+        💎 Алмазҳо
+      </button>
+
+      <button class="category" onclick="showProducts('vouchers')">
+        🎟️ Ваучерҳо
+      </button>
+
+      <button class="category" onclick="showProducts('levels')">
+        ⬆️ Прокачкаҳо
+      </button>
+    </div>
+
+
+    <!-- PRODUCTS -->
+    <div id="productsPanel" class="panel hidden">
+      <h2 id="categoryTitle"></h2>
+      <div id="products"></div>
+    </div>
+
+
+    <!-- ORDER -->
+    <div id="orderPanel" class="panel hidden">
+
+      <h2>Маълумоти фармоиш</h2>
+
+      <div id="selectedInfo"></div>
+
+      <input
+        id="uid"
+        type="number"
+        placeholder="Free Fire Player ID"
+      >
+
+      <button class="button" onclick="checkUID()">
+        Проверка ID
+      </button>
+
+      <div id="uidMessage" class="info"></div>
+
+      <select id="payment">
+        <option value="">Методи пардохтро интихоб кунед</option>
+        <option value="Alif">Alif</option>
+        <option value="Dushanbe City">Dushanbe City</option>
+        <option value="Eskhata">Eskhata</option>
+      </select>
+
+      <button class="button" onclick="showPayment()">
+        Идома додан
+      </button>
+
+      <div id="paymentInfo" class="info"></div>
+
+    </div>
+
+
+    <button class="button back" onclick="backHome()">
+      ← Баргаштан
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  let selectedProduct = "";
+  let selectedPrice = 0;
+
+  const products = {
+
+    diamonds: [
+      ["100 + 10 Diamonds", 8.00],
+      ["300 + 10 Diamonds", 27.50],
+      ["500 + 72 Diamonds", 44.00],
+      ["1100 + 66 Diamonds", 88.00],
+      ["2300 + 98 Diamonds", 177.00],
+      ["6100 + 60 Diamonds", 446.00]
+    ],
+
+    vouchers: [
+      ["Lite Voucher", 4.50],
+      ["Weekly Voucher", 15.50],
+      ["Monthly Voucher", 65.00]
+    ],
+
+    levels: [
+      ["Level 6", 3.30],
+      ["Level 15", 5.50],
+      ["Level 20", 5.50],
+      ["Level 25", 5.50],
+      ["Level 30", 8.10]
+    ]
+
+  };
+
+
+  function openFreeFire() {
+
+    document
+      .getElementById("gamesScreen")
+      .classList.add("hidden");
+
+    document
+      .getElementById("freeFireScreen")
+      .classList.remove("hidden");
+
+  }
+
+
+  function backHome() {
+
+    document
+      .getElementById("freeFireScreen")
+      .classList.add("hidden");
+
+    document
+      .getElementById("gamesScreen")
+      .classList.remove("hidden");
+
+  }
+
+
+  function showProducts(type) {
+
+    const panel = document.getElementById("productsPanel");
+    const list = document.getElementById("products");
+    const title = document.getElementById("categoryTitle");
+
+    panel.classList.remove("hidden");
+
+    if (type === "diamonds") {
+      title.innerText = "💎 Алмазҳо";
+    }
+
+    if (type === "vouchers") {
+      title.innerText = "🎟️ Ваучерҳо";
+    }
+
+    if (type === "levels") {
+      title.innerText = "⬆️ Прокачкаҳо";
+    }
+
+    list.innerHTML = "";
+
+    products[type].forEach((item, index) => {
+
+      const div = document.createElement("div");
+
+      div.className = "product";
+
+      div.innerHTML =
+        "<div class='product-name'>" +
+        item[0] +
+        "</div>" +
+        "<div class='price'>" +
+        item[1].toFixed(2) +
+        " TJS</div>";
+
+      div.onclick = function() {
+        selectProduct(type, index);
+      };
+
+      list.appendChild(div);
+
+    });
+
+    panel.scrollIntoView({
+      behavior: "smooth"
+    });
+
+  }
+
+
+  function selectProduct(type, index) {
+
+    selectedProduct = products[type][index][0];
+    selectedPrice = products[type][index][1];
+
+    document
+      .getElementById("orderPanel")
+      .classList.remove("hidden");
+
+    document.getElementById("selectedInfo").innerHTML =
+      "<div class='info'>Маҳсулот:</div>" +
+      "<b>" + selectedProduct + "</b>" +
+      "<div class='amount'>" +
+      selectedPrice.toFixed(2) +
+      " TJS</div>";
+
+    document
+      .getElementById("orderPanel")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+
+  }
+
+
+  function checkUID() {
+
+    const uid =
+      document.getElementById("uid").value.trim();
+
+    const message =
+      document.getElementById("uidMessage");
+
+    if (!uid) {
+
+      message.innerText =
+        "⚠️ Аввал Player ID-ро ворид кунед.";
+
+      return;
+    }
+
+    message.innerText =
+      "ℹ️ Барои нишон додани номи воқеии аккаунт API-и расмии Free Fire лозим аст. Ҳоло танҳо санҷиши воридшавии ID иҷро шуд.";
+
+  }
+
+
+  function showPayment() {
+
+    const payment =
+      document.getElementById("payment").value;
+
+    const uid =
+      document.getElementById("uid").value.trim();
+
+    const info =
+      document.getElementById("paymentInfo");
+
+    if (!selectedProduct) {
+
+      info.innerText =
+        "⚠️ Аввал маҳсулотро интихоб кунед.";
+
+      return;
+    }
+
+    if (!uid) {
+
+      info.innerText =
+        "⚠️ Player ID-ро ворид кунед.";
+
+      return;
+    }
+
+    if (!payment) {
+
+      info.innerText =
+        "⚠️ Методи пардохтро интихоб кунед.";
+
+      return;
+    }
+
+    info.innerHTML =
+      "<b>" + payment + "</b><br>" +
+      "Маблағи пардохт: <b>" +
+      selectedPrice.toFixed(2) +
+      " TJS</b><br><br>" +
+      "Реквизити воқеии " +
+      payment +
+      " бояд аз backend ворид карда шавад.";
+
+  }
+
+
+  function comingSoon(game) {
+
+    alert(
+      game +
+      " — ҳоло дар ҳоли таҳия аст."
+    );
+
+  }
+
+
+  function openTelegram() {
+
+    window.open(
+      "https://t.me/AmirDonateBot",
+      "_blank"
+    );
+
+  }
+
+</script>
+
+</body>
+          </html>
