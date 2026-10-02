@@ -19,9 +19,12 @@ app.get("/api/test", (req, res) => {
   });
 });
 
-// Free Fire API diagnostic test
-app.get("/api/ff-test", async (req, res) => {
+// Free Fire RU / CIS UID lookup
+app.get("/api/ff", async (req, res) => {
   const uid = String(req.query.uid || "").trim();
+  const region = String(req.query.region || "RU")
+    .trim()
+    .toUpperCase();
 
   if (!/^\d{5,15}$/.test(uid)) {
     return res.status(400).json({
@@ -30,24 +33,53 @@ app.get("/api/ff-test", async (req, res) => {
     });
   }
 
+  if (!["RU", "CIS"].includes(region)) {
+    return res.status(400).json({
+      success: false,
+      message: "Танҳо RU ё CIS иҷозат аст"
+    });
+  }
+
   const apiUrl =
-    `https://api2.nftoken.info/player-info?uid=${encodeURIComponent(uid)}`;
+    `https://freefireapis.lat/info-player` +
+    `?uid=${encodeURIComponent(uid)}` +
+    `&region=${encodeURIComponent(region)}`;
 
   try {
     const response = await fetch(apiUrl);
-    const body = await response.text();
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      return res.status(502).json({
+        success: false,
+        message: "Free Fire API ҷавоби дуруст надод",
+        apiStatus: response.status
+      });
+    }
+
+    const info = data.result?.basicInfo;
+
+    if (!info || !info.nickname) {
+      return res.status(404).json({
+        success: false,
+        message: "Аккаунт ёфт нашуд"
+      });
+    }
 
     return res.json({
-      success: response.ok,
-      upstreamStatus: response.status,
-      upstreamBody: body.slice(0, 5000)
+      success: true,
+      uid: info.accountId || uid,
+      nickname: info.nickname,
+      level: info.level ?? null,
+      region: info.region || region
     });
 
   } catch (error) {
+    console.error("FREE FIRE API ERROR:", error);
+
     return res.status(502).json({
       success: false,
-      message: "Пайвастшавӣ ба Free Fire API ноком шуд",
-      error: error.message
+      message: "Пайвастшавӣ ба Free Fire API ноком шуд"
     });
   }
 });
